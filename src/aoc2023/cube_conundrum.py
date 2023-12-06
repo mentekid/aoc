@@ -24,12 +24,26 @@ def parse_line(line):
 def is_possible(reds, greens, blues):
     return max(reds) <= MAX_RED and max(greens) <= MAX_GREEN and max(blues) <= MAX_BLUE
 
-def solve(lines):
+def solve_part1(lines):
     answer = 0
     for line in lines:
         reds, greens, blues, game_idx = parse_line(line)
+
         answer += game_idx if is_possible(reds, greens, blues) else 0
     return answer
 
+def solve_part2(lines):
+    answer = 0
+    for line in lines:
+        reds, greens, blues, game_idx = parse_line(line)
+
+        max_reds = max(reds)
+        max_greens = max(greens)
+        max_blues = max(blues)
+        power = max_reds * max_greens * max_blues
+
+        answer += power
+    return answer
+
 if __name__ == "__main__":
-    print(solve([line for line in sys.stdin]))
+    print(solve_part2([line for line in sys.stdin]))
